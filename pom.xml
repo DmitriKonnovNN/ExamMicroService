@@ -18,6 +18,9 @@
         <app.image.name>exam-microservice-fs</app.image.name>
         <app.image.tag/>
         <testcontainers.version>1.16.2</testcontainers.version>
+        <node.version>v17.8.0</node.version>
+        <npm.version>8.5.5</npm.version>
+        <frontend-maven-plugin.version>1.11.2</frontend-maven-plugin.version>
     </properties>
     <dependencies>
         <dependency>
@@ -235,9 +238,9 @@
                         <artifactId>frontend-maven-plugin</artifactId>
                         <!-- Use the latest released version:
                                   https://repo1.maven.org/maven2/com/github/eirslett/frontend-maven-plugin/ -->
-                        <version>1.11.2</version>
+                        <version>${frontend-maven-plugin.version}</version>
                         <configuration>
-                            <nodeVersion>v15.4.0</nodeVersion>
+                            <nodeVersion>${node.version}</nodeVersion>
                             <workingDirectory>src/frontend</workingDirectory>
                         </configuration>
                         <executions>
@@ -247,8 +250,8 @@
                                     <goal>install-node-and-npm</goal>
                                 </goals>
                                 <configuration>
-                                    <nodeVersion>v16.0.0</nodeVersion>
-                                    <npmVersion>7.3.0</npmVersion>
+                                    <nodeVersion>${node.version}</nodeVersion>
+                                    <npmVersion>${npm.version}</npmVersion>
                                 </configuration>
                             </execution>
                             <execution>
