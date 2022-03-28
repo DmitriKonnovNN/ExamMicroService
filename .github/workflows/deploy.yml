@@ -7,16 +7,16 @@ on:
   workflow_dispatch:
 
 env:
-  # Postgres
+
   POSTGRESQL_VERSION: latest
   POSTGRESQL_DB: exams_microservice
   POSTGRESQL_USER: postgres
   POSTGRESQL_PASSWORD: P@s$w0rD
-  # Java
+
   JAVA_VERSION: 11
-  # DockerHub
+
   DOCKER_HUB_USERNAME: dmitriikonnovnn
-  # AWS & Elastic Bean Stalk
+
   AWS_REGION: eu-west-1
   EB_ENVIRONMENT_NAME: Exammicroservice-env
   EB_APPLICATION_NAME: exam-microservice
