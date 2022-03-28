@@ -9,7 +9,7 @@ class ExamsMicroServiceApplicationTests {
 
     @Test
     void contextLoads() {
-        Assertions.fail("Test on purpose failed!");
+        Assertions.fail("Test on purpose failed! Try2");
     }
 
 }
