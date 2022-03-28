@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  POSTGRESQL_VERSION: latest
+  POSTGRESQL_VERSION: 12.8
   POSTGRESQL_DB: exams_microservice
   POSTGRESQL_USER: postgres
   POSTGRESQL_PASSWORD: P@s$w0rD
