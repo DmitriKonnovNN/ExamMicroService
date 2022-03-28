@@ -26,7 +26,7 @@ import {
     TeamOutlined,
     UserOutlined,
     LoadingOutlined,
-    EditOutlined, DownloadOutlined, PlusOutlined
+    EditOutlined, PlusOutlined
 } from '@ant-design/icons';
 import Button from "antd/lib/button/button";
 import ExamDrawerForm from "./ExamDrawerForm";
