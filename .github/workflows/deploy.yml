@@ -17,7 +17,7 @@ env:
 
   DOCKER_HUB_USERNAME: dmitriikonnovnn
 
-  AWS_REGION: eu-west-1
+  AWS_REGION: eu-central-1
   EB_ENVIRONMENT_NAME: Exammicroservice-env
   EB_APPLICATION_NAME: exam-microservice
   EB_DEPLOYMENT_PACKAGE: elasticbeanstalk/docker-compose.yml
@@ -27,7 +27,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:latest
+        image: postgres:${{env.POSTGRESQL_VERSION}}
         env:
           POSTGRES_DB: ${{ env.POSTGRESQL_DB }}
           POSTGRES_USER: ${{ env.POSTGRESQL_USER }}
@@ -109,7 +109,7 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-          text: ':tada: :arrow_right: Exammicroservice-env.eba-cyucr7ij.eu-west-1.elasticbeanstalk.com'
+          text: ':tada: :arrow_right: Exammicroservice-env.eba-hzxxhhfm.eu-central-1.elasticbeanstalk.com'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
