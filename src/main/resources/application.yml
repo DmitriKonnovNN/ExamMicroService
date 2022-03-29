@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: local,dev,local-db
+    active: local,dev
 
 ---
 
@@ -56,35 +56,7 @@ spring:
   flyway:
     baseline-on-migrate: false
     enabled: true
----
 
-server:
-  error:
-    include-message: always
-    include-binding-errors: always
-
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/exam_microservice
-    driver-class-name: org.postgresql.Driver
-    password: 'P@ssw0rd'
-    pool-size: 30
-    username: postgres
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-    defer-datasource-initialization: false
-  config:
-    activate:
-      on-profile: local-db
-  flyway:
-    baseline-on-migrate: true
-    enabled: true
 
 
 
