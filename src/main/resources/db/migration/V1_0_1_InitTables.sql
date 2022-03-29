@@ -1,4 +1,8 @@
-BEGIN
+-- noinspection SqlResolveForFile
+
+-- noinspection SqlNoDataSourceInspectionForFile
+
+BEGIN TRANSACTION;
 INSERT INTO exam_type (id, type_name, description) VALUES (1,'Wirtschaft','Wirtschaft') ON CONFLICT DO NOTHING;
 INSERT INTO exam_type (id, type_name, description) VALUES (2,'Jugendliche','Prüfung für Jugendliche unter 16') ON CONFLICT DO NOTHING;
 INSERT INTO exam_type (id, type_name, description) VALUES (3,'Erwachsene','Prüfung für Erwachsene ab 16') ON CONFLICT DO NOTHING;
