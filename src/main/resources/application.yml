@@ -11,7 +11,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://aadfm7ls4thv2l.ctdfxixgdw3f.eu-west-1.rds.amazonaws.com:5432/exams_microservice
+    url: jdbc:postgresql://aaahqt3ykxldk9.ccca0rwlbn76.eu-central-1.rds.amazonaws.com:5432/exams_microservice
     username: dmitrikonnovnn
     password: 2ii28ei6o49o
 
