@@ -145,7 +145,7 @@ function ExamDrawerForm({showDrawer, setShowDrawer,fetchExams}) {
                         <Row>
                             <Col span={8}>
                                 <Checkbox
-                                    value="3"
+                                    value="1"
                                     style={{
                                         lineHeight: '32px',
                                     }}
@@ -166,7 +166,7 @@ function ExamDrawerForm({showDrawer, setShowDrawer,fetchExams}) {
                             </Col>
                             <Col span={8}>
                                 <Checkbox
-                                    value="1"
+                                    value="3"
                                     style={{
                                         lineHeight: '32px',
                                     }}

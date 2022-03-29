@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  POSTGRESQL_VERSION: 12.8
+  POSTGRESQL_VERSION: postgres:12.8
   POSTGRESQL_DB: exams_microservice
   POSTGRESQL_USER: postgres
   POSTGRESQL_PASSWORD: P@s$w0rD
@@ -16,9 +16,12 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        db_v: [12.8]
     services:
       postgres:
-        image: postgres:latest
+        image: postgres:${{matrix.db_v}}
         env:
           POSTGRES_DB: ${{ env.POSTGRESQL_DB }}
           POSTGRES_USER: ${{ env.POSTGRESQL_USER }}
