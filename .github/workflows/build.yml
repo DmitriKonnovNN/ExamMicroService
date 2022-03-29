@@ -16,9 +16,12 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        db: [postgres:12.8]
     services:
       postgres:
-        image: ${{env.POSTGRESQL_VERSION}}
+        image: ${{matrix.db}}
         env:
           POSTGRES_DB: ${{ env.POSTGRESQL_DB }}
           POSTGRES_USER: ${{ env.POSTGRESQL_USER }}
