@@ -27,10 +27,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        db: [ postgres:12.8 ]
+        db_v: [12.8]
     services:
       postgres:
-        image: ${{matrix.db}}
+        image: postgres:${{matrix.db_v}}
         env:
           POSTGRES_DB: ${{ env.POSTGRESQL_DB }}
           POSTGRES_USER: ${{ env.POSTGRESQL_USER }}
