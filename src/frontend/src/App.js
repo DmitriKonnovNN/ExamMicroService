@@ -257,7 +257,9 @@ function App() {
                       {renderExams()}
                   </div>
               </Content>
-              <Footer style={{ textAlign: 'center' }}>©2022 Created by Dmitrii Konnov</Footer>
+              <Footer style={{ textAlign: 'center' }}>©2022 Created by Dmitrii Konnov
+
+              </Footer>
           </Layout>
 
       </Layout>

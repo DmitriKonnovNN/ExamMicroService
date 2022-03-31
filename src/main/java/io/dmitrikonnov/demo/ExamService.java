@@ -8,4 +8,6 @@ public interface ExamService {
     void addExam(Exam exam);
 
     void deleteExamById(Long id);
+
+    Boolean existsByEmailPersonInChargeForExam(String email);
 }

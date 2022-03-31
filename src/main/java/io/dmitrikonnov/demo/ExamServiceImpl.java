@@ -26,4 +26,9 @@ public class ExamServiceImpl implements ExamService {
     public void deleteExamById(Long id) {
         examRepo.deleteById(id);
     }
+
+    @Override
+    public Boolean existsByEmailPersonInChargeForExam(String email) {
+        return examRepo.existsByEmailPersonInChargeForExam(email);
+    }
 }
