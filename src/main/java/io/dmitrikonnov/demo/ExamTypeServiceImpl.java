@@ -27,4 +27,6 @@ public class ExamTypeServiceImpl implements ExamTypeService {
         examTypeRepo.save(examType);
     }
 
+
+
 }

@@ -28,7 +28,7 @@ spring:
       on-profile: dev
   flyway:
     baseline-on-migrate: true
-    enabled: true
+    enabled: false
 
 ---
 
@@ -55,7 +55,7 @@ spring:
       on-profile: local
   flyway:
     baseline-on-migrate: false
-    enabled: true
+    enabled: false
 
 
 
