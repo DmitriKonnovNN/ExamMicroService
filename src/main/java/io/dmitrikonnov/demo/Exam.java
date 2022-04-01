@@ -8,7 +8,10 @@ import javax.validation.constraints.NotBlank;
 import java.util.List;
 import java.util.Set;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
@@ -35,7 +38,7 @@ public class Exam {
     Set<ExamType> examType;*/
 
 
-    @ManyToMany (cascade = CascadeType.MERGE)
+    @ManyToMany (fetch =FetchType.EAGER ,cascade = CascadeType.MERGE)
     @JoinTable(name = "exam_type_jointable",
             joinColumns = {@JoinColumn (name = "fk_exam")},
             inverseJoinColumns = {@JoinColumn(name = "fk_exam_type")})

@@ -12,6 +12,7 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://aaahqt3ykxldk9.ccca0rwlbn76.eu-central-1.rds.amazonaws.com:5432/exams_microservice
+    driver-class-name: org.postgresql.Driver
     username: dmitrikonnovnn
     password: 2ii28ei6o49o
 
@@ -40,6 +41,7 @@ server:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/exams_microservice
+    driver-class-name: org.postgresql.Driver
     username: postgres
     password: P@s$w0rD
   jpa:
