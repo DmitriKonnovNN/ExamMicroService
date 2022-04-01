@@ -38,7 +38,7 @@ public class Exam {
     Set<ExamType> examType;*/
 
 
-    @ManyToMany (fetch =FetchType.EAGER ,cascade = CascadeType.MERGE)
+    @ManyToMany (fetch =FetchType.LAZY ,cascade = CascadeType.MERGE)
     @JoinTable(name = "exam_type_jointable",
             joinColumns = {@JoinColumn (name = "fk_exam")},
             inverseJoinColumns = {@JoinColumn(name = "fk_exam_type")})
