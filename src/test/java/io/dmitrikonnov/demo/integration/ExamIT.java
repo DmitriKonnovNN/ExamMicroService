@@ -10,10 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 
+import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
@@ -41,6 +43,8 @@ public class ExamIT {
     private final Faker faker = new Faker();
 
     @Test
+    @Rollback(value = false)
+    @Transactional
     void canAddNewExam() throws Exception {
         //given
         String name = faker.name().firstName() + "." + faker.name().lastName();
@@ -60,6 +64,5 @@ public class ExamIT {
     }
 
     //TODO: i) replace "usingElement..." by smth appropriate;
-    //TODO: ii) figure out that shit about lazy-loading-bug
     //TODO: iii) write all integration tests
 }
