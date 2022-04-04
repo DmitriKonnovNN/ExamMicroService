@@ -6,4 +6,29 @@ services:
       - "80:8080"
     restart: always
     environment:
-      SPRING_PROFILES_ACTIVE: dev
+      SPRING_PROFILES_ACTIVE: local
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+
+    ports:
+      - "3000:3000"
+    networks:
+      - grafana
+    restart: unless-stopped
+
+
+  prometeus:
+    container_name: prometheus
+    image: prom/prometheus
+
+    ports:
+      - "9090:9090"
+    networks:
+      - grafana
+    restart: unless-stopped
+    volumes:
+      - ./src/main/resources/prometheus.yml:/etc/prometheus/prometheus.yml
+networks:
+  grafana:
+    driver: bridge
