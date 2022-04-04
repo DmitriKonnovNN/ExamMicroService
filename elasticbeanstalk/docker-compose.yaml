@@ -6,7 +6,7 @@ services:
       - "80:8080"
     restart: always
     environment:
-      SPRING_PROFILES_ACTIVE: local
+      SPRING_PROFILES_ACTIVE: dev
   grafana:
     container_name: grafana
     image: grafana/grafana
