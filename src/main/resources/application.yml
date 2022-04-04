@@ -58,8 +58,35 @@ spring:
   flyway:
     baseline-on-migrate: false
     enabled: false
-
-
+info:
+  app:
+    name: Exam MicroService
+    description: none
+    version: snapshot 1.0
+management:
+  server:
+    port: 9001
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-components: always
+      show-details: always
+  metrics:
+    enable:
+      http:
+        client:
+          requests: true
+        server:
+          requests: true
+    export:
+      prometheus:
+        enabled: true
+    distribution:
+      percentiles-histogram:
+        "[http.server.requests]": true
 
 
 
