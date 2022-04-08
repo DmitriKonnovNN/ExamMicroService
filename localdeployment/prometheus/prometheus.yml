@@ -15,5 +15,5 @@ scrape_configs:
     metrics_path: 'actuator/prometheus'
     scrape_interval: 5s
     static_configs:
-      - targets: ['host.docker.internal:9001']
+      - targets: ['fullstack-ms:9001']
   # consider using PORT 9001 because our actuator/prometheus is exposed there!
