@@ -69,10 +69,10 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/exams_microservice
+    url: jdbc:postgresql://exam-db:5432/exams_microservice
     driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: P@s$w0rD
+    username: dmitri
+    password: P@ssw0rD
   jpa:
     hibernate:
       ddl-auto: update
@@ -87,6 +87,8 @@ spring:
   flyway:
     baseline-on-migrate: false
     enabled: false
+  devtools:
+    add-properties: true
 info:
   app:
     name: Exam MicroService

@@ -41,8 +41,8 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5433/exams_microservice
     driver-class-name: org.postgresql.Driver
-    username: postgres
-    password: P@s$w0rD
+    username: dmitri
+    password: P@ssw0rD
   jpa:
     hibernate:
       ddl-auto: update

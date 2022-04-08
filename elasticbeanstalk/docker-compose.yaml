@@ -1,34 +1,9 @@
 version: "3.8"
 services:
   backend:
-    image: "dmitriikonnovnn/exam-microservice-fs:4.4.2022.16.48.26"
+    image: "dmitriikonnovnn/exam-microservice-fs:4.4.2022.8.16.58"
     ports:
       - "80:8080"
     restart: always
     environment:
       SPRING_PROFILES_ACTIVE: dev
-  grafana:
-    container_name: grafana
-    image: grafana/grafana
-
-    ports:
-      - "3000:3000"
-    networks:
-      - grafana
-    restart: unless-stopped
-
-
-  prometeus:
-    container_name: prometheus
-    image: prom/prometheus
-
-    ports:
-      - "9090:9090"
-    networks:
-      - grafana
-    restart: unless-stopped
-    volumes:
-      - ./src/main/resources/prometheus.yml:/etc/prometheus/prometheus.yml
-networks:
-  grafana:
-    driver: bridge

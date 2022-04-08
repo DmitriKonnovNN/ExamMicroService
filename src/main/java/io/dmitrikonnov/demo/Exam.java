@@ -15,7 +15,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table (name = "EXAM")
+@Table (name = "EXAM", indexes = @Index(columnList = "id", name = "exam_id_idx"))
 public class Exam {
 
     @Id
@@ -33,10 +33,6 @@ public class Exam {
     String examSummary;
     @Email
     String emailPersonInChargeForExam;
-  /*  @OneToMany
-            @JoinColumn(name = "exam_type_id")
-    Set<ExamType> examType;*/
-
 
     @ManyToMany (fetch =FetchType.LAZY ,cascade = CascadeType.MERGE)
     @JoinTable(name = "exam_type_jointable",
@@ -45,8 +41,6 @@ public class Exam {
     Set<ExamType> examType;
     String subjectOfExam;
     String status;
-
-    // TODO: Change later on type of some fields with respect to the real domain.
 
 
     public Exam(String examName, String results, String examiners, String examLevel, Set<ExamType> examType, String subjectOfExam, String status) {
