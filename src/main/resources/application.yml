@@ -40,7 +40,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://exam-db:5432/
+    url: jdbc:postgresql://exam-db:5432/exams_microservice
     driver-class-name: org.postgresql.Driver
     username: dmitri
     password: P@ssw0rD

@@ -21,6 +21,7 @@ services:
     environment:
       POSTGRES_USER: dmitri
       POSTGRES_PASSWORD: P@ssw0rD
+      POSTGRES_DB: exams_microservice
       PGDATA: /data/postgres
       POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256 --auth-local=scram-sha-256"
     volumes:
