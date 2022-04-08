@@ -241,7 +241,7 @@
                                 <id>push-latest-tag</id>
                                 <configuration>
                                     <to>
-                                        <image>dmitriikonnovnn/${app.image.name}:latest</image>
+                                        <image>dmitriikonnovnn/${app.image.name}:local-latest</image>
                                     </to>
                                 </configuration>
                                 <phase>package</phase>

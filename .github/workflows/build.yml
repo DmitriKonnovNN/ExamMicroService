@@ -9,8 +9,8 @@ on:
 env:
   POSTGRESQL_VERSION: 12.8
   POSTGRESQL_DB: exams_microservice
-  POSTGRESQL_USER: postgres
-  POSTGRESQL_PASSWORD: P@s$w0rD
+  POSTGRESQL_USER: dmitri
+  POSTGRESQL_PASSWORD: P@ssw0rD
   JAVA_VERSION: 11
 
 jobs:
