@@ -18,8 +18,8 @@ env:
   DOCKER_HUB_USERNAME: dmitriikonnovnn
 
   AWS_REGION: eu-central-1
-  EB_ENVIRONMENT_NAME: Exammicroservice-env
-  EB_APPLICATION_NAME: exam-microservice
+  EB_ENVIRONMENT_NAME: exam-managing-test
+  EB_APPLICATION_NAME: exam-microservices
   EB_DEPLOYMENT_PACKAGE: elasticbeanstalk/docker-compose.yaml
 
 jobs:
@@ -109,7 +109,7 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: repo,message,commit,author,action,eventName,ref,workflow,job,took
-          text: ':tada: :arrow_right: Exammicroservice-env.eba-hzxxhhfm.eu-central-1.elasticbeanstalk.com'
+          text: ':tada: :arrow_right: exam-managing-test.eu-central-1.elasticbeanstalk.com'
         env:
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
         if: always()
