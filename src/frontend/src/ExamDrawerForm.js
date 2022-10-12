@@ -13,10 +13,29 @@ const antIcon = <LoadingOutlined style={{ fontSize: 24 }} spin />;
 
 
 //TODO: Email front end VALIDATION!
-function ExamDrawerForm({showDrawer, setShowDrawer,fetchExams}) {
+function ExamDrawerForm({showDrawer, setShowDrawer,fetchExams,examTypes}) {
 
     const [submittingExam, setSubmittingExam] = useState(false);
-        const onCLose = () => setShowDrawer(false);
+    const onCLose = () => setShowDrawer(false);
+
+    const drawExamTypeCheckBox = () => {
+        return (<>{
+            examTypes.map(e =>{
+            return<Col key={e.id} span={8}>
+                <Checkbox
+                    value={e.id}
+                    style={{
+                        lineHeight: '32px',
+                    }}
+                >
+                    {e.typeName}
+                </Checkbox>
+            </Col>
+        })}
+        </>)
+    }
+
+
 
     const renderExamFromForm = exam => {
         console.log("EXAM:" + exam)
@@ -143,7 +162,8 @@ function ExamDrawerForm({showDrawer, setShowDrawer,fetchExams}) {
                 <Form.Item name="examType" label="Prüfungstyp">
                     <Checkbox.Group>
                         <Row>
-                            <Col span={8}>
+                          {drawExamTypeCheckBox()}
+{/*                            <Col span={8}>
                                 <Checkbox
                                     value="1"
                                     style={{
@@ -204,7 +224,7 @@ function ExamDrawerForm({showDrawer, setShowDrawer,fetchExams}) {
                                 >
                                     Medizin
                                 </Checkbox>
-                            </Col>
+                            </Col>*/}
                         </Row>
                     </Checkbox.Group>
                 </Form.Item>

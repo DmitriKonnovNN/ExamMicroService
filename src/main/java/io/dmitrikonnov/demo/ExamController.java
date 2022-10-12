@@ -25,11 +25,20 @@ public class ExamController {
     public List<Exam>getAllExams (){
         return examService.getAll();
     }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public void addExam (@Valid @RequestBody Exam exam){
         log.error(exam.toString());
         examService.addExam(exam);
+
+    }
+
+    @PutMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public void updateExam (@Valid @RequestBody Exam exam){
+        log.error(exam.toString());
+        examService.updateExam(exam);
 
     }
 
