@@ -18,7 +18,7 @@ public class ExamServiceImpl implements ExamService {
 
     @Override
     public List<Exam> getAll() {
-        return examRepo.findAll();
+        return examRepo.findAllByOrderByLastModified();
     }
 
     @Override
@@ -34,6 +34,13 @@ public class ExamServiceImpl implements ExamService {
         catch (EmptyResultDataAccessException ex) {
                 throw new NoSuchElementException(String.format(NO_SUCH_ELEMENT_EXC_ON_DELETE_MSG,id));
         }
+    }
+
+    @Override
+    public void updateExam(Exam exam) {
+        examRepo.findById(exam.id).ifPresent(entity->
+                entity.setExamSummary(exam.getExamSummary())
+        );
     }
 
     @Override

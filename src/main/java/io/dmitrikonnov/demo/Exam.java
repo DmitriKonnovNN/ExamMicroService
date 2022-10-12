@@ -1,10 +1,13 @@
 package io.dmitrikonnov.demo;
 
 import lombok.*;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -25,7 +28,6 @@ public class Exam {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator = "exam_sequence")
     Long id;
-    @NotBlank
     String examName;
     String results;
     String examiners;
@@ -41,6 +43,11 @@ public class Exam {
     Set<ExamType> examType;
     String subjectOfExam;
     String status;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
+    private Date lastModified;
+
 
 
     public Exam(String examName, String results, String examiners, String examLevel, Set<ExamType> examType, String subjectOfExam, String status) {

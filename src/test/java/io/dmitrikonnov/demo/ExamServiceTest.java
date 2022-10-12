@@ -45,7 +45,7 @@ class ExamServiceTest {
         //when
         underTest.getAll();
         //then
-        verify(examRepoMock).findAll();
+        verify(examRepoMock).findAllByOrderByLastModified();
     }
 
     @Test
