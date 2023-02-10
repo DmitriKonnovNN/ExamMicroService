@@ -32,3 +32,7 @@ export const deleteExam = id =>
         headers: {'Content-Type':'application/json'},
         method: 'DELETE'
     }).then(checkStatus);
+
+export const getAvailableExamTypes = ()=>
+    fetch("/api/v1/examtypes")
+        .then(checkStatus);

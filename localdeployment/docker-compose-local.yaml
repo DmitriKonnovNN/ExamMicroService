@@ -4,7 +4,7 @@ services:
     container_name: fullstack-ms
     depends_on:
       - exam-db
-    image: "dmitriikonnovnn/exam-microservice-fs:local-latest"
+    image: "dmitriikonnovnn/exam-microservice-fs:v3"
     ports:
       - "8080:8080"
 
