@@ -19,3 +19,10 @@ variable "app_main_port" {
   description = "standard port web server listens to"
   type        = number
 }
+
+variable "app_environments" {
+  description = "elasticbeanstalk's environments"
+  type        = list(string)
+  default     = ["production", "staging", "development"]
+
+}

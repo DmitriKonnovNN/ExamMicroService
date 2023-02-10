@@ -69,7 +69,7 @@ server:
 
 spring:
   datasource:
-    url: jdbc:postgresql://host.docker.internal:5433/exams_microservice
+    url: jdbc:postgresql://localhost:5433/exams_microservice
     driver-class-name: org.postgresql.Driver
     username: dmitri
     password: P@ssw0rD

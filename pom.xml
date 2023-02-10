@@ -280,7 +280,7 @@
         <profile>
             <id>build-frontend</id>
             <activation>
-                <activeByDefault>true
+                <activeByDefault>false
                 </activeByDefault>
             </activation>
             <build>
