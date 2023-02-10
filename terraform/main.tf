@@ -49,10 +49,15 @@ resource "aws_elastic_beanstalk_environment" "exam_app_envs" {
   tier                   = "WebServer"
   wait_for_ready_timeout = "30m"
 
-  setting {
-    namespace = "aws:autoscaling:launchconfiguration"
-    name      = "IamInstanceProfile"
-    value     = "aws-elasticbeanstalk-ec2-role"
+
+
+  dynamic "setting" {
+    for_each = var.optional_settings_by_namespaces
+    content {
+      name      = setting.value.option_name
+      namespace = setting.value.namespace
+      value     = setting.value.value
+    }
   }
 }
 

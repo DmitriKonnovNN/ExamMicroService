@@ -26,3 +26,53 @@ variable "app_environments" {
   default     = ["production", "staging", "development"]
 
 }
+
+variable "rds_connection_path" {
+  description = "path to get connection to RDS"
+  type        = string
+}
+
+variable "rds_password" {
+  description = "password for db instance"
+  type        = string
+  sensitive   = true
+}
+
+variable "rds_username" {
+  description = "username for db instance"
+  type        = string
+  default     = "dkuser"
+}
+
+variable "optional_settings_by_namespaces" {
+  type = map(object({
+    namespace   = string,
+    option_name = string,
+    value       = string
+  }))
+  default = {
+    "ASG_LAUNCH_CONFIG" = {
+      namespace   = "aws:autoscaling:launchconfiguration",
+      option_name = "IamInstanceProfile",
+      value       = "aws-elasticbeanstalk-ec2-role"
+    },
+    "ELB_ENV_TYPE" = {
+      namespace   = "aws:elasticbeanstalk:environment",
+      option_name = "EnvironmentType",
+      value       = "LoadBalanced"
+    },
+    "ELB_TYPE" = {
+      namespace   = "aws:elasticbeanstalk:environment",
+      option_name = "LoadBalancerType",
+      value       = "application"
+    },
+    "SESSION_STICKINESS" = {
+      namespace   = "aws:elasticbeanstalk:environment:process:default",
+      option_name = "StickinessEnabled",
+      value       = "true"
+    },
+
+
+  }
+
+}
