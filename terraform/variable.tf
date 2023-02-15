@@ -24,55 +24,71 @@ variable "app_environments" {
   description = "elasticbeanstalk's environments"
   type        = list(string)
   default     = ["production", "staging", "development"]
-
 }
-
 variable "rds_connection_path" {
   description = "path to get connection to RDS"
   type        = string
 }
-
+variable "beanstalk_iam_instance_profile" {
+  type    = string
+  default = "aws-elasticbeanstalk-ec2-role"
+}
+variable "beanstalk_environment_type" {
+  type    = string
+  default = "LoadBalanced"
+}
+variable "beanstalk_loadbalancer_type" {
+  type    = string
+  default = "application"
+}
+variable "session_stickiness" {
+  type    = string
+  default = "true"
+}
+variable "beanstalk_asg_min_size" {
+  type    = string
+  default = "1"
+}
+variable "beanstalk_asg_max_size" {
+  type    = string
+  default = "2"
+}
+variable "rds_size" {
+  type    = string
+  default = "10"
+}
+variable "rds_engine" {
+  type    = string
+  default = "postgres"
+}
+variable "rds_engine_version" {
+  type    = string
+  default = "12.8"
+}
+variable "rds_instance_class" {
+  type    = string
+  default = "db.t2.micro"
+}
+variable "rds_deletion_policy" {
+  type    = string
+  default = "Retain"
+}
+variable "rds_coupled_beanstalk_env" {
+  type    = string
+  default = "false"
+}
+variable "rds_multi_az" {
+  type    = string
+  default = "false"
+}
 variable "rds_password" {
   description = "password for db instance"
   type        = string
   sensitive   = true
 }
-
 variable "rds_username" {
   description = "username for db instance"
   type        = string
-  default     = "dkuser"
+  default     = "ebroot"
 }
 
-variable "optional_settings_by_namespaces" {
-  type = map(object({
-    namespace   = string,
-    option_name = string,
-    value       = string
-  }))
-  default = {
-    "ASG_LAUNCH_CONFIG" = {
-      namespace   = "aws:autoscaling:launchconfiguration",
-      option_name = "IamInstanceProfile",
-      value       = "aws-elasticbeanstalk-ec2-role"
-    },
-    "ELB_ENV_TYPE" = {
-      namespace   = "aws:elasticbeanstalk:environment",
-      option_name = "EnvironmentType",
-      value       = "LoadBalanced"
-    },
-    "ELB_TYPE" = {
-      namespace   = "aws:elasticbeanstalk:environment",
-      option_name = "LoadBalancerType",
-      value       = "application"
-    },
-    "SESSION_STICKINESS" = {
-      namespace   = "aws:elasticbeanstalk:environment:process:default",
-      option_name = "StickinessEnabled",
-      value       = "true"
-    },
-
-
-  }
-
-}

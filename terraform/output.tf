@@ -4,6 +4,11 @@ output "ebt_env_endpoint" {
   sensitive   = false
 }
 
+output "ebt_cname" {
+  value     = [for m in aws_elastic_beanstalk_environment.exam_app_envs : m.cname]
+  sensitive = false
+}
+
 output "solutions_stack" {
   description = "solutions-stack"
   value       = data.aws_elastic_beanstalk_solution_stack.docker-stack.name
