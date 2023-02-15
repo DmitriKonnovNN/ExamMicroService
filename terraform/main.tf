@@ -72,8 +72,7 @@ Condition down below prevents from creating a database for each environment. A d
       for s in local.rds_settings : s
       if each.value == "production"
     ]
-    #for_each = each.value == "production" ? local.rds_settings : {}
-    #for_each = local.rds_settings
+
     content {
       name      = setting.value["option_name"]
       namespace = setting.value["namespace"]

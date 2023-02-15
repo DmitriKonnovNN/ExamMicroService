@@ -73,7 +73,9 @@ variable "rds_deletion_policy" {
   type    = string
   default = "Retain"
 }
+
 variable "rds_coupled_beanstalk_env" {
+  description = "if originally set to false, nothing is created; if changed to false, db is gonna be decoupled"
   type    = string
   default = "true"
 }
@@ -84,7 +86,7 @@ variable "rds_multi_az" {
 variable "rds_password" {
   description = "password for db instance"
   type        = string
-  sensitive   = false
+  sensitive   = true
 }
 variable "rds_username" {
   description = "username for db instance"
