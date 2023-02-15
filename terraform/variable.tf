@@ -75,7 +75,7 @@ variable "rds_deletion_policy" {
 }
 variable "rds_coupled_beanstalk_env" {
   type    = string
-  default = "false"
+  default = "true"
 }
 variable "rds_multi_az" {
   type    = string
@@ -84,7 +84,7 @@ variable "rds_multi_az" {
 variable "rds_password" {
   description = "password for db instance"
   type        = string
-  sensitive   = true
+  sensitive   = false
 }
 variable "rds_username" {
   description = "username for db instance"
