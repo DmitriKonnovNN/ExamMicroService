@@ -20,7 +20,7 @@ env:
 
   AWS_REGION: eu-east-1
   EB_ENVIRONMENT_NAME: development
-  EB_APPLICATION_NAME: exam-management-service
+  EB_APPLICATION_NAME: exam-management
   EB_DEPLOYMENT_PACKAGE: elasticbeanstalk/docker-compose.yaml
 
 jobs:
