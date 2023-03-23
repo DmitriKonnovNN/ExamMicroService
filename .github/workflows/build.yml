@@ -12,6 +12,7 @@ env:
   POSTGRESQL_USER: dmitri
   POSTGRESQL_PASSWORD: P@ssw0rD
   JAVA_VERSION: 11
+  CI: false
 
 jobs:
   build:

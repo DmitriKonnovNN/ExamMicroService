@@ -12,6 +12,7 @@ env:
   POSTGRESQL_DB: exams_microservice
   POSTGRESQL_USER: dmitri
   POSTGRESQL_PASSWORD: P@ssw0rD
+  CI: false
 
   JAVA_VERSION: 11
 
