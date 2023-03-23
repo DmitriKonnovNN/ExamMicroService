@@ -10,8 +10,8 @@
     </parent>
     <groupId>io.dmitrikonnov</groupId>
     <artifactId>demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>ExamsMicroService</name>
+    <version>0.0.2-SNAPSHOT</version>
+    <name>exam-management-service</name>
     <description>Microservice to Manage exams</description>
     <properties>
         <java.version>11</java.version>
@@ -34,7 +34,11 @@
             <scope>runtime</scope>
             <optional>true</optional>
         </dependency>
-
+        <dependency>
+            <groupId>com.amazonaws</groupId>
+            <artifactId>aws-java-sdk-s3</artifactId>
+            <version>1.12.322</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -169,7 +173,7 @@
         <profile>
             <id>jib-push-to-dockerhub</id>
             <activation>
-                <activeByDefault>false</activeByDefault>
+                <activeByDefault>true</activeByDefault>
             </activation>
             <build>
                 <plugins>

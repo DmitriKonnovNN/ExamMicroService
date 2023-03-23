@@ -36,6 +36,8 @@ public class Exam {
     @Email
     String emailPersonInChargeForExam;
 
+    String previewImageLink;
+
     @ManyToMany (fetch =FetchType.LAZY ,cascade = CascadeType.MERGE)
     @JoinTable(name = "exam_type_jointable",
             joinColumns = {@JoinColumn (name = "fk_exam")},

@@ -4,10 +4,13 @@ import lombok.AllArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -50,6 +53,23 @@ public class ExamController {
     @ExceptionHandler (NoSuchElementException.class)
     public ResponseEntity<String> throwNoSuchElementException (NoSuchElementException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
+
+
+    @PutMapping(path = "/tasks/{id}/image",
+            consumes = MediaType.MULTIPART_FORM_DATA_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<String> addTaskImage(@RequestParam ("image") MultipartFile file, @PathVariable long id) throws IOException {
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).body(examService.updateExamImageByExamId(id, file));
+    }
+    @GetMapping(value = "/tasks/{id}/image")
+    public byte[] downloadTodoImage(@PathVariable("id") long id) {
+        return examService.downloadImageById(id);
+    }
+    @DeleteMapping(value = "tasks/{id}/image")
+    public ResponseEntity<String> deleteImageById(@PathVariable("id") long id){
+        return ResponseEntity.status(HttpStatus.OK).body(examService.deleteImageByExamId(id));
     }
 
 }

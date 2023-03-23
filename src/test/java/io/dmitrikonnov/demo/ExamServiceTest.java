@@ -26,13 +26,16 @@ class ExamServiceTest {
 
     @Mock
     private ExamRepo examRepoMock;
+
+    @Mock
+    private AwsS3Storage s3;
     private ExamService underTest;
 
 
     @BeforeEach
     void setUp() {
 
-        underTest = new ExamServiceImpl(examRepoMock);
+        underTest = new ExamServiceImpl(examRepoMock,s3);
     }
 
     @AfterEach
@@ -86,7 +89,8 @@ class ExamServiceTest {
         //when
         doThrow(NoSuchElementException.class).when(examRepoMock).deleteById(notExistingId);
         //then
-        assertThatThrownBy(()-> {underTest.deleteExamById(notExistingId);})
+        assertThatThrownBy(()-> {
+            underTest.deleteExamById(notExistingId);})
                 .isInstanceOf(NoSuchElementException.class);
         verifyNoMoreInteractions(examRepoMock);
 

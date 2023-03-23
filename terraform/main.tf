@@ -70,7 +70,7 @@ Condition down below prevents from creating a database for each environment. A d
   dynamic "setting" {
     for_each = [
       for s in local.rds_settings : s
-      if each.value == "production"
+      if each.value == "development"
     ]
 
     content {
@@ -179,3 +179,6 @@ locals {
     value       = ""
   }]
 }
+
+# https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/command-options-general.html#command-options-general-rdsdbinstance
+# https://aws.amazon.com/premiumsupport/knowledge-center/decouple-rds-from-beanstalk/

@@ -25,10 +25,10 @@ variable "app_environments" {
   type        = list(string)
   default     = ["production", "staging", "development"]
 }
-variable "rds_connection_path" {
-  description = "path to get connection to RDS"
-  type        = string
-}
+#variable "rds_connection_path" {
+#  description = "path to get connection to RDS"
+#  type        = string
+#}
 variable "beanstalk_iam_instance_profile" {
   type    = string
   default = "aws-elasticbeanstalk-ec2-role"
@@ -76,8 +76,8 @@ variable "rds_deletion_policy" {
 
 variable "rds_coupled_beanstalk_env" {
   description = "if originally set to false, nothing is created; if changed to false, db is gonna be decoupled"
-  type    = string
-  default = "true"
+  type        = string
+  default     = "true"
 }
 variable "rds_multi_az" {
   type    = string
