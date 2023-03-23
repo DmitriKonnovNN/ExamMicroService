@@ -18,7 +18,7 @@ env:
 
   DOCKER_HUB_USERNAME: dmitriikonnovnn
 
-  AWS_REGION: eu-east-1
+  AWS_REGION: us-east-1
   EB_ENVIRONMENT_NAME: development
   EB_APPLICATION_NAME: exam-management
   EB_DEPLOYMENT_PACKAGE: elasticbeanstalk/docker-compose.yaml
