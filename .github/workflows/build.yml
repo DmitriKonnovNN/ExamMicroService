@@ -39,3 +39,4 @@ jobs:
       - name: Maven Clean Package & Build Frontend
         run: |
           ./mvnw --no-transfer-progress clean package -P build-frontend
+
