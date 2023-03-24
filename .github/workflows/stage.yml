@@ -25,7 +25,7 @@ env:
   EB_DEPLOYMENT_PACKAGE: elasticbeanstalk/docker-compose.yaml
 
   jobs:
-    stage:
+    deploy-into-staging:
       runs-on: ubuntu-latest
       services:
         postgres:
