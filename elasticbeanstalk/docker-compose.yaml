@@ -7,7 +7,7 @@ services:
     restart: always
     environment:
       - SPRING_PROFILES_ACTIVE=dev
-      - SPRING_DATASOURCE_URL="jdbc:postgresql://${RDS_HOSTNAME}:${RDS_PORT}/${RDS_DB_NAME}"
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://${RDS_HOSTNAME}:${RDS_PORT}/${RDS_DB_NAME}
       - SPRING_DATASOURCE_USERNAME=${RDS_USERNAME}
       - SPRING_DATASOURCE_PASSWORD=${RDS_PASSWORD}
       - JVM_OPTS="-Xms256M -Xmx512M"
