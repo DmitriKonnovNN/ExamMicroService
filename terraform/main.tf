@@ -70,7 +70,7 @@ Condition down below prevents from creating a database for each environment. A d
   dynamic "setting" {
     for_each = [
       for s in local.rds_settings : s
-      if each.value == "development"
+      if each.value == "development" || each.value == "staging"
     ]
 
     content {
