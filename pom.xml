@@ -14,7 +14,8 @@
     <name>exam-management-service</name>
     <description>Microservice to Manage exams</description>
     <properties>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
+        <java.distro>openjdk:17-oracle</java.distro>
         <app.image.name>exam-microservice-fs</app.image.name>
         <app.image.tag/>
         <testcontainers.version>1.16.2</testcontainers.version>
@@ -183,7 +184,7 @@
                         <version>3.3.1</version>
                         <configuration>
                             <from>
-                                <image>openjdk:12-oracle</image>
+                                <image>${java.distro}</image>
                             </from>
                             <to>
                                 <image>docker.io/dmitriikonnovnn/${app.image.name}:${app.image.tag}</image>
@@ -240,7 +241,7 @@
                         <version>3.3.1</version>
                         <configuration>
                             <from>
-                                <image>openjdk:12-oracle</image>
+                                <image>${java.distro}</image>
                             </from>
                             <container>
                                 <ports>
