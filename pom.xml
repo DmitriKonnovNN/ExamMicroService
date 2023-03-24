@@ -190,6 +190,10 @@
                                 <image>docker.io/dmitriikonnovnn/${app.image.name}:${app.image.tag}</image>
                             </to>
                             <container>
+                                <jvmFlags>
+                                    <jvmFlag>-Xms256M</jvmFlag>
+                                    <jvmFlag>-Xmx512M</jvmFlag>
+                                </jvmFlags>
                                 <ports>
                                     <port>8080</port>
                                 </ports>
