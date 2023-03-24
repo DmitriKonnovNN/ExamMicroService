@@ -156,7 +156,7 @@
                 <version>3.3.1</version>
                 <configuration>
                     <from>
-                        <image>openjdk:12-oracle</image>
+                        <image>${java.distro}</image>
                     </from>
                     <container>
                         <ports>
