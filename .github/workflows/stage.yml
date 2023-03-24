@@ -1,4 +1,4 @@
-name: CICD-staging
+name: STAGING
 
 on:
   push:
