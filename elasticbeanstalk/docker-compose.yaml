@@ -1,7 +1,7 @@
 version: "3.8"
 services:
   backend:
-    image: "dmitriikonnovnn/exam-microservice-fs:24.3.2023.12.45.50"
+    image: "dmitriikonnovnn/exam-microservice-fs:24.3.2023.17.56.42"
     ports:
       - "80:8080"
     restart: always
