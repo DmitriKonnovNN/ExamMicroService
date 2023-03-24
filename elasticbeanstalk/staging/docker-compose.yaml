@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  backend:
+    image: "dmitriikonnovnn/exam-microservice-fs:24.3.2023.12.16.48"
+    ports:
+      - "80:8080"
+    restart: always
+    environment:
+      - SPRING_PROFILES_ACTIVE=staging
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://${RDS_HOSTNAME}:${RDS_PORT}/${RDS_DB_NAME}
+      - SPRING_DATASOURCE_USERNAME=${RDS_USERNAME}
+      - SPRING_DATASOURCE_PASSWORD=${RDS_PASSWORD}
+      - JVM_OPTS="-Xms256M -Xmx512M"
+
