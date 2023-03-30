@@ -1,4 +1,4 @@
-name: CI
+name: BUILD-WITH-HOTSPOT
 
 on:
   pull_request:

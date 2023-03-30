@@ -1,4 +1,4 @@
-name: CI
+name: BUILD-WITH-GRAALVM
 
 on:
   pull_request:
