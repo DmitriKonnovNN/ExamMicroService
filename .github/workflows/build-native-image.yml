@@ -1,4 +1,4 @@
-name: BUILD-WITH-GRAALVM
+name: BUILD-NATIVE-IMAGE-GRAALVM
 
 on:
   pull_request:
@@ -37,6 +37,6 @@ jobs:
           version: 'latest'
           cache: 'maven'
           native-image-job-reports: true
-      - name: Maven Clean Package & Build Frontend
+      - name: Maven Clean Package & Build Native Image
         run: |
           ./mvnw --no-transfer-progress clean package -P build-native-image
