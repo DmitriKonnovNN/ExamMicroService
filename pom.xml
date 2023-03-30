@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>io.dmitrikonnov</groupId>
-    <artifactId>demo</artifactId>
-    <version>0.0.2-SNAPSHOT</version>
+    <artifactId>beta</artifactId>
+    <version>0.1.0-SNAPSHOT</version>
     <name>exam-management-service</name>
     <description>Microservice to Manage exams</description>
     <properties>
@@ -110,6 +110,11 @@
             <artifactId>spring-restdocs-mockmvc</artifactId>
             <version>2.0.6.RELEASE</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.google.cloud.tools</groupId>
+            <artifactId>jib-native-image-extension-maven</artifactId>
+            <version>0.1.0</version>
         </dependency>
 
     </dependencies>
@@ -356,6 +361,72 @@
                                 </configuration>
                             </execution>
                         </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>build-native-image</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.google.cloud.tools</groupId>
+                        <artifactId>jib-maven-plugin</artifactId>
+                        <version>3.3.1</version>
+                        <configuration>
+                            <from>
+                                <image>${java.distro}</image>
+                            </from>
+                            <container>
+                                <ports>
+                                    <port>8080</port>
+                                </ports>
+                                <format>
+                                    OCI
+                                </format>
+                            </container>
+                            <pluginExtensions>
+                                <pluginExtension>
+                                    <implementation>com.google.cloud.tools.jib.maven.extension.nativeimage.JibNativeImageExtension</implementation>
+                                </pluginExtension>
+                            </pluginExtensions>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>push-latest-tag</id>
+                                <configuration>
+                                    <to>
+                                        <image>dmitriikonnovnn/${app.image.name}:local-latest</image>
+                                    </to>
+                                </configuration>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>dockerBuild</goal>
+                                </goals>
+                            </execution>
+                            <execution>
+                                <id>push-custom-tag</id>
+                                <configuration>
+                                    <to>
+                                        <image>dmitriikonnovnn/${app.image.name}:${app.image.tag}</image>
+                                    </to>
+                                </configuration>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>dockerBuild</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.google.cloud.tools</groupId>
+                                <artifactId>jib-native-image-extension-maven</artifactId>
+                                <version>0.1.0</version>
+                            </dependency>
+                        </dependencies>
                     </plugin>
                 </plugins>
             </build>

@@ -33,8 +33,10 @@ jobs:
       - uses: graalvm/setup-graalvm@v1
         with:
           java-version: ${{ env.JAVA_VERSION }}
+          components: 'native-image'
           version: 'latest'
           cache: 'maven'
+          native-image-job-reports: true
       - name: Maven Clean Package & Build Frontend
         run: |
-          ./mvnw --no-transfer-progress clean package -P build-frontend
+          ./mvnw --no-transfer-progress clean package -P build-native-image
