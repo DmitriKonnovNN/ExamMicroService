@@ -1,7 +1,7 @@
 import './App.css';
 
 
-import {getAllExams} from "./client";
+import {getAllExams, getAvailableExamTypes} from "./client";
 import {
     useState,
     useEffect
@@ -73,7 +73,21 @@ const examColumns = [
         title: 'Anmeldung',
         dataIndex: 'status',
         key: 'state',
-        render: state => <ExamStateBadge state = {state}/>
+        render: state => <ExamStateBadge state = {state}/>,
+        filters: [
+            {
+            text: 'abgeschlossen',
+            value: 'abgeschlossen'
+            },
+            {
+            text: 'eingeplant', value: 'eingeplant'
+            }
+        ],
+        filterMode: 'tree',
+        filterSearch: true,
+        onFilter: (value, record) => record.status.toLowerCase().includes(value),
+        width: '30%',
+
     },
     {
         title: 'Niveau',
@@ -128,12 +142,14 @@ function App() {
     const [theme, setTheme] = useState("dark")
     const [switchColor, setSwitchColor] = useState("#bfbfbf")
     const [showDrawer, setShowDrawer] = useState(false)
-
+    const [examTypes, setExamTypes] = useState([])
+    const [currentTable, setCurrentTable] = useState("alle")
+    const [currentTableSize, setCurrentTableSize] = useState(0)
 
     const fetchAllExams = () => getAllExams()
         .then(res=> res.json())
         .then((data)=> {
-            console.log(data)
+            setCurrentTableSize(data.length)
             setExams(data)
             setFetching(false)
         })
@@ -143,6 +159,30 @@ function App() {
 
         } )/*.finally(()=> setFetching(false))*/
 
+    const fetchAllExamTypes = () => getAvailableExamTypes()
+        .then(res=> res.json())
+        .then((data)=> {
+            console.log(data)
+            setExamTypes(data)
+        })
+        .catch(err=> {
+            console.log(err)
+            errorNotification(`Ein Fehler ist aufgetreten`, `${err.message} ${err.stack}`,10, 'bottomLeft')
+
+        } )
+
+    const onChange = (pagination, filters, sorter, extra) => {
+        console.log('params', pagination, filters, sorter, extra);
+        changeCurrentTableSize(extra.currentDataSource.length)
+    }
+
+    const changeCurrentTable = table => {
+        setCurrentTable(table)
+    }
+    const changeCurrentTableSize = size => {
+
+        setCurrentTableSize(size)
+    }
 
     const changeTheme = value => {
         setTheme( value ? 'light' : 'dark')
@@ -154,6 +194,7 @@ function App() {
     }
 
     const changeShowDrawer = () => {
+        fetchAllExamTypes()
         setShowDrawer(!showDrawer)
     }
 
@@ -166,8 +207,15 @@ function App() {
     useEffect(()=>{
         console.log(`component mounted! Be aware: If we delete arg "deps", the function will be executed permanently!`)
         fetchAllExams()},[]);
+/*
+    useEffect(()=>{
+        fetchAllExamTypes()},[]);
+*/
+
+
 
     const renderExams = () => {
+        if (currentTable==="alle"){console.log(currentTable)}
         if (fetching){
             return <Spin indicator={antIcon}/>
         }
@@ -176,6 +224,7 @@ function App() {
                 showDrawer={showDrawer}
                 setShowDrawer={setShowDrawer}
                 fetchExams={fetchAllExams}
+                examTypes={examTypes}
             />
         <Empty>
             <Button
@@ -191,15 +240,17 @@ function App() {
                 showDrawer={showDrawer}
                 setShowDrawer={setShowDrawer}
                 fetchExams={fetchAllExams}
+                examTypes={examTypes}
             />
             <Table
             dataSource={exams}
             columns={examColumns}
+            onChange={onChange}
             expandable={{expandedRowRender:exam => <>{expandedExamRowRender(exam)}</>}}
             bordered
             title={()=>
                 <>
-                    <Tag>Prüfungen insgesamt: {exams.length}</Tag>
+                    <Tag>Prüfungen insgesamt: {currentTableSize}/{exams.length} </Tag>
                     <br/>
                     <br/>
                     <Button
@@ -223,7 +274,7 @@ function App() {
                   <Switch theme={theme} onChange={changeTheme}/> Theme ändern</h5>
               <div className="logo" />
               <Menu theme={theme} defaultSelectedKeys={['1']} mode="inline">
-                  <Menu.Item key="1" icon={<PieChartOutlined />}>
+                  <Menu.Item key="1" icon={<PieChartOutlined />} >
                       Statistiken
                   </Menu.Item>
                   <Menu.Item key="10" icon={<EditOutlined />}>
@@ -233,9 +284,9 @@ function App() {
                       Aktuelle Prüfungen
                   </Menu.Item>
                   <SubMenu key="sub1" icon={<UserOutlined />} title="Prüfungen">
-                      <Menu.Item key="3">anstehend</Menu.Item>
-                      <Menu.Item key="4">vergangen</Menu.Item>
-                      <Menu.Item key="5">eingeplant</Menu.Item>
+                      <Menu.Item key="3" onClick={()=>changeCurrentTable("anstehend")} >anstehend</Menu.Item>
+                      <Menu.Item key="4" onClick={()=>changeCurrentTable("vergangen")} >vergangen</Menu.Item>
+                      <Menu.Item key="5" onClick={()=>changeCurrentTable("eingeplant")}>eingeplant</Menu.Item>
                   </SubMenu>
                   <SubMenu key="sub2" icon={<TeamOutlined />} title="Prüfer*innen">
                       <Menu.Item key="6">aktuell</Menu.Item>

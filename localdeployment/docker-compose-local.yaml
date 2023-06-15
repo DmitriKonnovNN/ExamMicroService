@@ -1,0 +1,71 @@
+version: "3.8"
+services:
+  fullstack-microservice:
+    container_name: fullstack-ms
+    depends_on:
+      - exam-db
+    image: "dmitriikonnovnn/exam-microservice-fs:v3"
+    ports:
+      - "8080:8080"
+
+    restart: unless-stopped
+    networks:
+      - exam-db-network
+      - grafana
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+
+  exam-db:
+    container_name: exam-db
+    image: postgres:alpine
+    environment:
+      POSTGRES_USER: dmitri
+      POSTGRES_PASSWORD: P@ssw0rD
+      POSTGRES_DB: exams_microservice
+      PGDATA: /data/postgres
+      POSTGRES_INITDB_ARGS: "--auth-host=scram-sha-256 --auth-local=scram-sha-256"
+    volumes:
+      - postgres_data:/data/postgres
+    ports:
+      - "5433:5432"
+    networks:
+      - exam-db-network
+    restart: unless-stopped
+
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana
+
+    ports:
+      - "3000:3000"
+    networks:
+      - grafana
+    restart: unless-stopped
+
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus
+
+    ports:
+      - "9090:9090"
+    networks:
+      - grafana
+
+    volumes:
+        - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+        - prometheus_data:/prometheus
+    command: --config.file=/etc/prometheus/prometheus.yml
+    restart: always
+
+networks:
+  exam-db-network:
+    driver: bridge
+  grafana:
+    driver: bridge
+
+volumes:
+  postgres_data: {}
+  prometheus_data: {}
+

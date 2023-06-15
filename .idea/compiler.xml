@@ -11,7 +11,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="ExamMicroService" target="11" />
+      <module name="EMC-CDK" target="1.8" />
+      <module name="ExamMicroService" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">

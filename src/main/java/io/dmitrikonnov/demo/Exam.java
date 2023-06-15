@@ -1,10 +1,13 @@
 package io.dmitrikonnov.demo;
 
 import lombok.*;
+import org.hibernate.annotations.GenerationTime;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -15,7 +18,7 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table (name = "EXAM")
+@Table (name = "EXAM", indexes = @Index(columnList = "id", name = "exam_id_idx"))
 public class Exam {
 
     @Id
@@ -25,7 +28,6 @@ public class Exam {
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator = "exam_sequence")
     Long id;
-    @NotBlank
     String examName;
     String results;
     String examiners;
@@ -33,10 +35,8 @@ public class Exam {
     String examSummary;
     @Email
     String emailPersonInChargeForExam;
-  /*  @OneToMany
-            @JoinColumn(name = "exam_type_id")
-    Set<ExamType> examType;*/
 
+    String previewImageLink;
 
     @ManyToMany (fetch =FetchType.LAZY ,cascade = CascadeType.MERGE)
     @JoinTable(name = "exam_type_jointable",
@@ -46,7 +46,10 @@ public class Exam {
     String subjectOfExam;
     String status;
 
-    // TODO: Change later on type of some fields with respect to the real domain.
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
+    private Date lastModified;
+
 
 
     public Exam(String examName, String results, String examiners, String examLevel, Set<ExamType> examType, String subjectOfExam, String status) {

@@ -1,8 +1,9 @@
-import {deleteExam, updateExam} from "./client";
+import {deleteExam, addNewExam, updateExam} from "./client";
 import {successNotification,errorNotification} from "./Notification";
-import {Popconfirm, Space, Table} from "antd";
+import {Col, Popconfirm, Row, Space, Table} from "antd";
 import Button from "antd/lib/button/button";
 import TextArea from "antd/es/input/TextArea";
+import Checkbox from "antd/es/checkbox/Checkbox";
 
 
 function ExpandableExamColumns({examSource ,fetchExams}){
@@ -29,6 +30,7 @@ function ExpandableExamColumns({examSource ,fetchExams}){
                 return <>
                     <TextArea defaultValue = {examSummary}
                               onPressEnter = {onSummarySubmit}
+                              input type = "text"
                               autoSize />
                     <div style={{ margin: '24px 0' }} />
                 </>
@@ -55,12 +57,15 @@ function ExpandableExamColumns({examSource ,fetchExams}){
             )}
     ]
 
-    const onSummarySubmit = value =>{
 
+    const onSummarySubmit = (value) =>{
+        let exam = {
+            "id":examSource.id,
+            "examSummary":value.target.value}
+
+        console.log(exam)
+        updateExam(exam)
         //TODO: pass the value
-        updateExam(examSource)
-
-
     }
 
     const onDeletionConfirm = () => {
